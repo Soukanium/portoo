@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Soukanium Portfolio</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --primary-color: #8b5cf6;
+        --secondary-color: #4c1d95;
+        --bg-color: #111827;
+        --text-color: #ffffff;
+        --secondary-bg: #1f2937;
+        --accent-color: #10b981;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
+
+      header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        background-color: rgba(17, 24, 39, 0.8);
+        backdrop-filter: blur(10px);
+        transition: all 0.3s ease;
+      }
+
+      header.sticky {
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 0;
+      }
+
+      .logo {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--primary-color);
+        text-decoration: none;
+      }
+
+      .nav-links {
+        display: flex;
+        list-style-type: none;
+      }
+
+      .nav-links li {
+        margin-left: 2rem;
+      }
+
+      .nav-links a {
+        color: var(--text-color);
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      .nav-links a:hover {
+        color: var(--primary-color);
+      }
+
+      .burger {
+        display: none;
+        cursor: pointer;
+      }
+
+      .burger div {
+        width: 25px;
+        height: 3px;
+        background-color: var(--text-color);
+        margin: 5px;
+        transition: all 0.3s ease;
+      }
+
+      section {
+        padding: 5rem 0;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.5s ease, transform 0.5s ease;
+      }
+
+      section.fade-in {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .hero {
+        display: flex;
+        align-items: center;
+        min-height: 100vh;
+        padding-top: 5rem;
+        position: relative;
+        overflow: hidden;
+      }
+
+      #particles-js {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: -1;
+      }
+
+      .hero-content {
+        flex: 1;
+        z-index: 1;
+      }
+
+      .hero-image {
+        flex: 1;
+        text-align: right;
+        z-index: 1;
+      }
+
+      .hero-image img {
+        max-width: 80%;
+        border-radius: 50%;
+        box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+        animation: float 3s ease-in-out infinite;
+      }
+
+      @keyframes float {
+        0% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-20px);
+        }
+        100% {
+          transform: translateY(0px);
+        }
+      }
+
+      h1 {
+        font-size: 3.5rem;
+        margin-bottom: 1rem;
+        animation: fadeInUp 1s ease;
+      }
+
+      h2 {
+        font-size: 2.5rem;
+        margin-bottom: 2rem;
+        text-align: center;
+      }
+
+      .typed-text {
+        color: var(--primary-color);
+      }
+
+      .cta-btn {
+        display: inline-block;
+        background-color: var(--primary-color);
+        color: var(--text-color);
+        padding: 0.8rem 2rem;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        margin-top: 1rem;
+      }
+
+      .cta-btn:hover {
+        background-color: var(--secondary-color);
+        transform: translateY(-3px);
+      }
+
+      .skills-ticker {
+        position: absolute;
+        bottom: 2rem;
+        left: 0;
+        width: 100%;
+        overflow: hidden;
+        background-color: rgba(31, 41, 55, 0.8);
+        padding: 1rem 0;
+      }
+
+      .skills-ticker-content {
+        display: flex;
+        animation: ticker 30s linear infinite;
+        white-space: nowrap;
+      }
+
+      .skills-ticker-item {
+        padding: 0 2rem;
+        font-size: 1.2rem;
+        color: var(--primary-color);
+      }
+
+      @keyframes ticker {
+        0% {
+          transform: translateX(100%);
+        }
+        100% {
+          transform: translateX(-100%);
+        }
+      }
+
+      .about {
+        background-color: var(--secondary-bg);
+      }
+
+      .about-content {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+      }
+
+      .about-image {
+        flex: 1;
+        position: relative;
+      }
+
+      .about-image img {
+        max-width: 100%;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .about-image::before {
+        content: "";
+        position: absolute;
+        top: -10px;
+        left: -10px;
+        right: 10px;
+        bottom: 10px;
+        border: 2px solid var(--primary-color);
+        border-radius: 10px;
+        z-index: -1;
+      }
+
+      .about-text {
+        flex: 1;
+      }
+
+      .skills {
+        background-color: var(--bg-color);
+      }
+
+      .skills-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+      }
+
+      .skill-card {
+        background-color: var(--secondary-bg);
+        padding: 2rem;
+        border-radius: 10px;
+        text-align: center;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .skill-card::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: conic-gradient(
+          var(--primary-color),
+          var(--secondary-color),
+          var(--accent-color),
+          var(--primary-color)
+        );
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        animation: rotate 4s linear infinite;
+      }
+
+      .skill-card:hover::before {
+        opacity: 1;
+      }
+
+      .skill-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .skill-card-content {
+        position: relative;
+        background-color: var(--secondary-bg);
+        height: 100%;
+        padding: 1rem;
+        border-radius: 8px;
+      }
+
+      @keyframes rotate {
+        100% {
+          transform: rotate(1turn);
+        }
+      }
+
+      .skill-icon {
+        font-size: 3rem;
+        color: var(--primary-color);
+        margin-bottom: 1rem;
+      }
+
+      .projects {
+        background-color: var(--secondary-bg);
+      }
+
+      .project-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+      }
+
+      .project-card {
+        background-color: var(--bg-color);
+        border-radius: 10px;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        position: relative;
+      }
+
+      .project-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .project-image {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+      }
+
+      .project-info {
+        padding: 1.5rem;
+      }
+
+      .project-tech {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background-color: rgba(139, 92, 246, 0.8);
+        color: var(--text-color);
+        padding: 0.3rem 0.6rem;
+        border-radius: 20px;
+        font-size: 0.8rem;
+      }
+
+      .testimonials {
+        background-color: var(--bg-color);
+      }
+
+      .testimonial-container {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        gap: 2rem;
+        padding-bottom: 2rem;
+      }
+
+      .testimonial-card {
+        flex: 0 0 300px;
+        scroll-snap-align: start;
+        background-color: var(--secondary-bg);
+        padding: 2rem;
+        border-radius: 10px;
+        position: relative;
+      }
+
+      .testimonial-card::before {
+        content: '"';
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        font-size: 4rem;
+        color: var(--primary-color);
+        opacity: 0.2;
+      }
+
+      .testimonial-text {
+        font-style: italic;
+        margin-bottom: 1rem;
+      }
+
+      .testimonial-author {
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+      }
+
+      .testimonial-avatar {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        margin-right: 1rem;
+      }
+
+      .contact {
+        background-color: var(--secondary-bg);
+      }
+
+      .contact-form {
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .form-group {
+        margin-bottom: 1.5rem;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+      }
+
+      .form-group input,
+      .form-group textarea {
+        width: 100%;
+        padding: 0.8rem;
+        border-radius: 5px;
+        border: none;
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        transition: box-shadow 0.3s ease;
+      }
+
+      .form-group input:focus,
+      .form-group textarea:focus {
+        outline: none;
+        box-shadow: 0 0 0 2px var(--primary-color);
+      }
+
+      .form-group textarea {
+        resize: vertical;
+        min-height: 150px;
+      }
+
+      footer {
+        background-color: var(--bg-color);
+        text-align: center;
+        padding: 2rem 0;
+      }
+
+      .social-links {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-top: 1rem;
+      }
+
+      .social-links a {
+        color: var(--text-color);
+        font-size: 1.5rem;
+        transition: color 0.3s ease;
+      }
+
+      .social-links a:hover {
+        color: var(--primary-color);
+      }
+
+      @media screen and (max-width: 768px) {
+        .burger {
+          display: block;
+        }
+
+        .nav-links {
+          position: fixed;
+          right: -100%;
+          top: 5rem;
+          flex-direction: column;
+          background-color: var(--bg-color);
+          width: 100%;
+          text-align: center;
+          transition: 0.3s;
+          box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-links.active {
+          right: 0;
+        }
+
+        .nav-item {
+          margin: 2.5rem 0;
+        }
+
+        .hero {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .hero-image {
+          margin-top: 2rem;
+        }
+
+        .about-content {
+          flex-direction: column;
+        }
+
+        .skill-card,
+        .project-card,
+        .testimonial-card {
+          width: 100%;
+        }
+
+        .skills-ticker {
+          font-size: 1rem;
+        }
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .scroll-to-top {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background-color: var(--primary-color);
+        color: var(--text-color);
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .scroll-to-top.visible {
+        opacity: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav class="container">
+        <a href="#" class="logo">Soukanium</a>
+        <ul class="nav-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#testimonials">Testimonials</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="burger">
+          <div class="line1"></div>
+          <div class="line2"></div>
+          <div class="line3"></div>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section id="home" class="hero">
+        <div id="particles-js"></div>
+        <div class="container">
+          <div class="hero-content">
+            <h1>Hi, I'm Soukanium</h1>
+            <p>I'm a <span class="typed-text"></span></p>
+            <a href="#contact" class="cta-btn">Get in touch</a>
+          </div>
+          <div class="hero-image">
+            <img src="/placeholder.svg?height=400&width=400" alt="Soukanium" />
+          </div>
+        </div>
+        <div class="skills-ticker">
+          <div class="skills-ticker-content">
+            <span class="skills-ticker-item">HTML</span>
+            <span class="skills-ticker-item">CSS</span>
+            <span class="skills-ticker-item">JavaScript</span>
+            <span class="skills-ticker-item">React</span>
+            <span class="skills-ticker-item">Node.js</span>
+            <span class="skills-ticker-item">Python</span>
+            <span class="skills-ticker-item">Java</span>
+            <span class="skills-ticker-item">SQL</span>
+            <span class="skills-ticker-item">MongoDB</span>
+            <span class="skills-ticker-item">Firebase</span>
+            <span class="skills-ticker-item">Git</span>
+            <span class="skills-ticker-item">Docker</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="about" class="about">
+        <div class="container">
+          <h2>About Me</h2>
+          <div class="about-content">
+            <div class="about-image">
+              <img
+                src="/placeholder.svg?height=400&width=300"
+                alt="About Soukanium"
+              />
+            </div>
+            <div class="about-text">
+              <p>
+                I am an aspiring developer that started from making Minecraft
+                mods and servers ever since I was 12. Now, I do a little bit of
+                everything, from fullstack development to penetration testing.
+                Other than programming, I like to play games, learn different
+                languages, and day trade.
+              </p>
+              <p>
+                With over 7 years of tinkering experience, 2 certificates
+                achieved, and more than 5 completed projects, I'm always eager
+                to take on new challenges and expand my skill set.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="skills" class="skills">
+        <div class="container">
+          <h2>My Skills</h2>
+          <div class="skills-container">
+            <div class="skill-card">
+              <div class="skill-card-content">
+                <div class="skill-icon">💻</div>
+                <h3>Frontend Development</h3>
+                <p>HTML, CSS, JavaScript, React</p>
+              </div>
+            </div>
+            <div class="skill-card">
+              <div class="skill-card-content">
+                <div class="skill-icon">🖥️</div>
+                <h3>Backend Development</h3>
+                <p>Node.js, Express, Python, Java</p>
+              </div>
+            </div>
+            <div class="skill-card">
+              <div class="skill-card-content">
+                <div class="skill-icon">🔒</div>
+                <h3>Penetration Testing</h3>
+                <p>Network Security, Web App Security</p>
+              </div>
+            </div>
+            <div class="skill-card">
+              <div class="skill-card-content">
+                <div class="skill-icon">🗄️</div>
+                <h3>Database Design</h3>
+                <p>SQL, MongoDB, Firebase</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects" class="projects">
+        <div class="container">
+          <h2>My Projects</h2>
+          <div class="project-grid">
+            <div class="project-card">
+              <img
+                src="/placeholder.svg?height=200&width=300"
+                alt="Project 1"
+                class="project-image"
+              />
+              <div class="project-info">
+                <h3>Project 1</h3>
+                <p>
+                  A brief description of the project and the technologies used.
+                </p>
+                <a href="#" class="cta-btn">View Project</a>
+              </div>
+              <span class="project-tech">React, Node.js</span>
+            </div>
+            <div class="project-card">
+              <img
+                src="/placeholder.svg?height=200&width=300"
+                alt="Project 2"
+                class="project-image"
+              />
+              <div class="project-info">
+                <h3>Project 2</h3>
+                <p>
+                  A brief description of the project and the technologies used.
+                </p>
+                <a href="#" class="cta-btn">View Project</a>
+              </div>
+              <span class="project-tech">Python, Django</span>
+            </div>
+            <div class="project-card">
+              <img
+                src="/placeholder.svg?height=200&width=300"
+                alt="Project 3"
+                class="project-image"
+              />
+              <div class="project-info">
+                <h3>Project 3</h3>
+                <p>
+                  A brief description of the project and the technologies used.
+                </p>
+                <a href="#" class="cta-btn">View Project</a>
+              </div>
+              <span class="project-tech">Java, Spring Boot</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="testimonials" class="testimonials">
+        <div class="container">
+          <h2>Testimonials</h2>
+          <div class="testimonial-container">
+            <div class="testimonial-card">
+              <p class="testimonial-text">
+                "Soukanium is an exceptional developer with a keen eye for
+                detail. Their work on our project exceeded our expectations."
+              </p>
+              <div class="testimonial-author">
+                <img
+                  src="/placeholder.svg?height=50&width=50"
+                  alt="John Doe"
+                  class="testimonial-avatar"
+                />
+                <span>John Doe, CEO of TechCorp</span>
+              </div>
+            </div>
+            <div class="testimonial-card">
+              <p class="testimonial-text">
+                "Working with Soukanium was a pleasure. They brought innovative
+                solutions to our challenges and delivered on time."
+              </p>
+              <div class="testimonial-author">
+                <img
+                  src="/placeholder.svg?height=50&width=50"
+                  alt="Jane Smith"
+                  class="testimonial-avatar"
+                />
+                <span>Jane Smith, Project Manager</span>
+              </div>
+            </div>
+            <div class="testimonial-card">
+              <p class="testimonial-text">
+                "Soukanium's penetration testing skills helped us identify and
+                fix critical security issues in our application."
+              </p>
+              <div class="testimonial-author">
+                <img
+                  src="/placeholder.svg?height=50&width=50"
+                  alt="Mike Johnson"
+                  class="testimonial-avatar"
+                />
+                <span>Mike Johnson, CTO of SecureApp</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="contact">
+        <div class="container">
+          <h2>Get In Touch</h2>
+          <form class="contact-form">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" required />
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" required />
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" required></textarea>
+            </div>
+            <button type="submit" class="cta-btn">Send Message</button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        <p>&copy; 2023 Soukanium. All rights reserved.</p>
+        <div class="social-links">
+          <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+          <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+          <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        </div>
+      </div>
+    </footer>
+
+    <div class="scroll-to-top">
+      <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+      // Sticky Header
+      window.addEventListener("scroll", () => {
+        const header = document.querySelector("header");
+        header.classList.toggle("sticky", window.scrollY > 0);
+      });
+
+      // Mobile Navigation
+      const navSlide = () => {
+        const burger = document.querySelector(".burger");
+        const nav = document.querySelector(".nav-links");
+        const navLinks = document.querySelectorAll(".nav-links li");
+
+        burger.addEventListener("click", () => {
+          nav.classList.toggle("active");
+
+          navLinks.forEach((link, index) => {
+            if (link.style.animation) {
+              link.style.animation = "";
+            } else {
+              link.style.animation = `navLinkFade 0.5s ease forwards ${
+                index / 7 + 0.3
+              }s`;
+            }
+          });
+
+          burger.classList.toggle("toggle");
+        });
+      };
+
+      navSlide();
+
+      // Typed.js
+      var typed = new Typed(".typed-text", {
+        strings: [
+          "Fullstack Developer",
+          "Penetration Tester",
+          "Problem Solver",
+        ],
+        typeSpeed: 50,
+        backSpeed: 50,
+        loop: true,
+      });
+
+      // Smooth Scrolling
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+
+          document.querySelector(this.getAttribute("href")).scrollIntoView({
+            behavior: "smooth",
+          });
+        });
+      });
+
+      // Form Submission (you would need to implement the actual form submission logic)
+      const form = document.querySelector(".contact-form");
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        // Add your form submission logic here
+        alert("Form submitted! (This is a placeholder action)");
+      });
+
+      // Fade-in animation on scroll
+      const fadeInElements = document.querySelectorAll("section");
+
+      const fadeInOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -100px 0px",
+      };
+
+      const fadeInObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("fade-in");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, fadeInOptions);
+
+      fadeInElements.forEach((element) => {
+        fadeInObserver.observe(element);
+      });
+
+      // Particles.js
+      particlesJS("particles-js", {
+        particles: {
+          number: { value: 80, density: { enable: true, value_area: 800 } },
+          color: { value: "#ffffff" },
+          shape: {
+            type: "circle",
+            stroke: { width: 0, color: "#000000" },
+            polygon: { nb_sides: 5 },
+            image: { src: "img/github.svg", width: 100, height: 100 },
+          },
+          opacity: {
+            value: 0.5,
+            random: false,
+            anim: { enable: false, speed: 1, opacity_min: 0.1, sync: false },
+          },
+          size: {
+            value: 3,
+            random: true,
+            anim: { enable: false, speed: 40, size_min: 0.1, sync: false },
+          },
+          line_linked: {
+            enable: true,
+            distance: 150,
+            color: "#ffffff",
+            opacity: 0.4,
+            width: 1,
+          },
+          move: {
+            enable: true,
+            speed: 6,
+            direction: "none",
+            random: false,
+            straight: false,
+            out_mode: "out",
+            bounce: false,
+            attract: { enable: false, rotateX: 600, rotateY: 1200 },
+          },
+        },
+        interactivity: {
+          detect_on: "canvas",
+          events: {
+            onhover: { enable: true, mode: "repulse" },
+            onclick: { enable: true, mode: "push" },
+            resize: true,
+          },
+          modes: {
+            grab: { distance: 400, line_linked: { opacity: 1 } },
+            bubble: {
+              distance: 400,
+              size: 40,
+              duration: 2,
+              opacity: 8,
+              speed: 3,
+            },
+            repulse: { distance: 200, duration: 0.4 },
+            push: { particles_nb: 4 },
+            remove: { particles_nb: 2 },
+          },
+        },
+        retina_detect: true,
+      });
+
+      // Scroll to Top
+      const scrollToTopButton = document.querySelector(".scroll-to-top");
+
+      window.addEventListener("scroll", () => {
+        if (window.pageYOffset > 100) {
+          scrollToTopButton.classList.add("visible");
+        } else {
+          scrollToTopButton.classList.remove("visible");
+        }
+      });
+
+      scrollToTopButton.addEventListener("click", () => {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      });
+
+      // Project hover effect
+      const projectCards = document.querySelectorAll(".project-card");
+
+      projectCards.forEach((card) => {
+        card.addEventListener("mouseenter", () => {
+          card.style.transform = "scale(1.05)";
+        });
+
+        card.addEventListener("mouseleave", () => {
+          card.style.transform = "scale(1)";
+        });
+      });
+
+      // Testimonial carousel
+      const testimonialContainer = document.querySelector(
+        ".testimonial-container"
+      );
+      let isDown = false;
+      let startX;
+      let scrollLeft;
+
+      testimonialContainer.addEventListener("mousedown", (e) => {
+        isDown = true;
+        startX = e.pageX - testimonialContainer.offsetLeft;
+        scrollLeft = testimonialContainer.scrollLeft;
+      });
+
+      testimonialContainer.addEventListener("mouseleave", () => {
+        isDown = false;
+      });
+
+      testimonialContainer.addEventListener("mouseup", () => {
+        isDown = false;
+      });
+
+      testimonialContainer.addEventListener("mousemove", (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - testimonialContainer.offsetLeft;
+        const walk = (x - startX) * 3;
+        testimonialContainer.scrollLeft = scrollLeft - walk;
+      });
+    </script>
+  </body>
+</html>
